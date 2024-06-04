@@ -10,7 +10,7 @@ interface CallbackOneParam<T1 = void, T2 = void> {
  *
  * @param onAuthenticatedCallback
  */
-const Login = (onAuthenticatedCallback: CallbackOneParam) => {
+const Login = (onAuthenticatedCallback: CallbackOneParam): void => {
   keycloakInstance
     .init({ onLoad: "login-required" })
     .then(function (authenticated) {
@@ -22,8 +22,18 @@ const Login = (onAuthenticatedCallback: CallbackOneParam) => {
     });
 };
 
+const UserName = (): string | undefined =>
+  keycloakInstance?.tokenParsed?.preferred_username;
+
+const Token = (): string | undefined => keycloakInstance?.token;
+
+const LogOut = () => keycloakInstance.logout();
+
 const KeyCloakService = {
   CallLogin: Login,
+  GetUserName: UserName,
+  GetAccesToken: Token,
+  CallLogOut: LogOut,
 };
 
 export default KeyCloakService;
