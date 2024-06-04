@@ -29,11 +29,17 @@ const Token = (): string | undefined => keycloakInstance?.token;
 
 const LogOut = () => keycloakInstance.logout();
 
+const UserRoles = (): string[] | undefined => {
+  if (keycloakInstance.resourceAccess === undefined) return undefined;
+  return keycloakInstance.resourceAccess["vuejs"].roles;
+};
+
 const KeyCloakService = {
   CallLogin: Login,
   GetUserName: UserName,
   GetAccesToken: Token,
   CallLogOut: LogOut,
+  GetUserRoles: UserRoles,
 };
 
 export default KeyCloakService;
