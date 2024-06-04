@@ -1,4 +1,9 @@
-import { createApp } from 'vue'
-import App from './App.vue'
+import { createApp } from "vue";
+import App from "./App.vue";
+import KeyCloakService from "./security/KeycloakService";
 
-createApp(App).mount('#app')
+const renderApp = () => {
+  createApp(App).mount("#app");
+};
+
+KeyCloakService.CallLogin(renderApp);
