@@ -1,33 +1,23 @@
 <template>
   <div class="User">
-    <h2>User {{ User() }}</h2>
-    <h2>Roles {{ UserRoles()?.join(" ") }}</h2>
-    <h2>Access Token {{ AccessToken() }}</h2>
-    <button @click="LogOut">Log Out</button>
+    <h2>User {{ userName }}</h2>
+    <h2>Roles {{ userRoles?.join(" ") }}</h2>
+    <h2>Access Token {{ accessToken }}</h2>
+    <button @click="logOut">Log Out</button>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
-import KeyCloakService from "../security/KeycloakService";
+<script setup lang="ts">
+import { ref } from 'vue';
+import KeyCloakService from '../security/KeycloakService';
 
-export default defineComponent({
-  name: "HomePage",
-  methods: {
-    User() {
-      return KeyCloakService.GetUserName();
-    },
-    AccessToken() {
-      return KeyCloakService.GetAccesToken();
-    },
-    LogOut() {
-      return KeyCloakService.CallLogOut();
-    },
-    UserRoles() {
-      return KeyCloakService.GetUserRoles();
-    },
-  },
-});
+const userName = ref(KeyCloakService.GetUserName());
+const accessToken = ref(KeyCloakService.GetAccesToken());
+const userRoles = ref(KeyCloakService.GetUserRoles());
+
+const logOut = () => {
+  KeyCloakService.CallLogOut();
+};
 </script>
 
 <style scoped>

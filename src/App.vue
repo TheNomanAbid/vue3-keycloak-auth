@@ -1,18 +1,15 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HomePage/>
+  <div id="app">
+    <router-link to="/home">Home</router-link>
+    <router-link to="/login">Login</router-link>
+    <div></div>
+    <img alt="Vue logo" src="./assets/logo.png">
+    <router-view />
+  </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
-import HomePage from './views/HomePage.vue'
-
-export default defineComponent({
-  name: 'App',
-  components: {
-    HomePage
-  }
-});
+<script setup lang="ts">
+// stuff here
 </script>
 
 <style>

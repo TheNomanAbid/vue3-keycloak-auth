@@ -1,7 +1,7 @@
 <template>
-    <div class="login-container">
+    <div v-if="keycloakUrl" class="login-container">
+      <h2>Sign in</h2>
       <iframe
-        v-if="keycloakUrl"
         :src="keycloakUrl"
         frameborder="0"
         class="login-iframe"
@@ -9,29 +9,22 @@
     </div>
   </template>
   
-  <script lang="ts">
-  import { defineComponent } from 'vue';
+  <script setup lang="ts">
+  import { onMounted, ref } from 'vue';
   
-  export default defineComponent({
-    name: 'LogIn',
-    data() {
-      return {
-        keycloakUrl: ''
-      };
-    },
-    created() {
-      this.getLoginUrl();
-    },
-    methods: {
-      getLoginUrl() {
-        const baseUrl = 'http://localhost:8081';
-        const realm = 'Vue';
-        const clientId = 'vuejs';
-        const redirectUri = encodeURIComponent(window.location.origin);
+  const keycloakUrl = ref('');
   
-        this.keycloakUrl = `${baseUrl}/realms/${realm}/protocol/openid-connect/auth?client_id=${clientId}&redirect_uri=${redirectUri}&response_mode=fragment&response_type=code&scope=openid`;
-      }
-    }
+  const getLoginUrl = () => {
+    const baseUrl = 'http://localhost:8081';
+    const realm = 'Vue';
+    const clientId = 'vuejs';
+    const redirectUri = encodeURIComponent(window.location.origin);
+  
+    keycloakUrl.value = `${baseUrl}/realms/${realm}/protocol/openid-connect/auth?client_id=${clientId}&redirect_uri=${redirectUri}&response_mode=fragment&response_type=code&scope=openid`;
+  };
+  
+  onMounted(() => {
+    getLoginUrl();
   });
   </script>
   

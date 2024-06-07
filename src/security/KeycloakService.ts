@@ -3,22 +3,22 @@ import axios from "axios";
 import qs from "qs";
 
 const keycloakInstance = new Keycloak({
-  url: "http://localhost:8081/auth",
-  realm: "Vue",
-  clientId: "vuejs"
+  url: process.env.VUE_APP_KEYCLOAK_URL,
+  realm: process.env.VUE_APP_KEYCLOAK_REALM,
+  clientId: process.env.VUE_APP_KEYCLOAK_CLIENT_ID
 });
 
 interface CallbackOneParam<T1 = void, T2 = void> {
   (param1: T1): T2;
 }
 
-const Login = async (onAuthenticatedCallback: CallbackOneParam): Promise<void> => {
+const Login = async (username: string, password: string, onAuthenticatedCallback: CallbackOneParam): Promise<void> => {
   try {
     const data = qs.stringify({
-      client_id: 'vuejs',
-      client_secret: 'gG0Y0ME9p1ux6awADvFiqMlddZuwxlFt',
-      username: 'vueuser',
-      password: 'admin',
+      client_id: process.env.VUE_APP_KEYCLOAK_CLIENT_ID,
+      client_secret: process.env.VUE_APP_KEYCLOAK_CLIENT_SECRET,
+      username,
+      password,
       grant_type: 'password',
       scope: 'openid'
     });
