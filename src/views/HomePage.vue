@@ -1,6 +1,6 @@
 <template>
-  <div class="login">
-    <h2>Login {{ Login() }}</h2>
+  <div class="User">
+    <h2>User {{ User() }}</h2>
     <h2>Roles {{ UserRoles()?.join(" ") }}</h2>
     <h2>Access Token {{ AccessToken() }}</h2>
     <button @click="LogOut">Log Out</button>
@@ -12,9 +12,9 @@ import { defineComponent } from "vue";
 import KeyCloakService from "../security/KeycloakService";
 
 export default defineComponent({
-  name: "LogIn",
+  name: "HomePage",
   methods: {
-    Login() {
+    User() {
       return KeyCloakService.GetUserName();
     },
     AccessToken() {
@@ -30,7 +30,6 @@ export default defineComponent({
 });
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 h3 {
   margin: 40px 0 0;

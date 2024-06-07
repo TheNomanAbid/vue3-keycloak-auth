@@ -1,16 +1,16 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
-  <LogIn/>
+  <HomePage/>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import LogIn from './components/LogIn.vue'
+import HomePage from './views/HomePage.vue'
 
 export default defineComponent({
   name: 'App',
   components: {
-    LogIn
+    HomePage
   }
 });
 </script>
