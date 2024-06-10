@@ -18,7 +18,6 @@ This guide covers the steps required to set up and configure Keycloak for use wi
 1. Go to **Clients** and click **Create**.
 2. Set **Client ID** to `vuejs`.
 3. Set **Client Protocol** to `openid-connect`.
-4. Set **Access Type** to `confidential`.
 5. Click **Save**.
 
 ### Configure Client
