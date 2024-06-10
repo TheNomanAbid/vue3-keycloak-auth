@@ -17,6 +17,11 @@ const routes: Array<RouteRecordRaw> = [
     name: 'LogIn',
     component: () => import('../views/LogIn.vue'),
   },
+  {
+    path: '/callback',
+    name: 'CallBack',
+    component: () => import('../views/CallBack.vue'),
+  },
 ];
 
 const router = createRouter({

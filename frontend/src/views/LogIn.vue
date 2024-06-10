@@ -31,34 +31,20 @@ const codeChallenge = sha256(codeVerifier).toString(Base64)
   .replace(/\//g, '_')
   .replace(/=+$/, '');
 
-console.log('Code Verifier:', codeVerifier);
-console.log('Code Challenge:', codeChallenge);
-
 const getLoginUrl = () => {
   const baseUrl = 'http://localhost:8081';
   const realm = 'Vue';
   const clientId = 'vuejs';
   const redirectUri = encodeURIComponent(window.location.origin);
 
-  keycloakUrl.value = `${baseUrl}/realms/${realm}/protocol/openid-connect/auth?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&scope=openid&code_challenge=${codeChallenge}&code_challenge_method=S256`;
-
-  console.log('Keycloak URL:', keycloakUrl.value);
+  keycloakUrl.value = `${baseUrl}/realms/${realm}/protocol/openid-connect/auth?client_id=${clientId}&redirect_uri=${redirectUri}/callback&response_type=code&scope=openid&code_challenge=${codeChallenge}&code_challenge_method=S256`;
 
   // Save the code verifier to sessionStorage for later use
   sessionStorage.setItem('pkce_code_verifier', codeVerifier);
 };
 
-const handleAuthorizationCode = async () => {
-  const urlParams = new URLSearchParams(window.location.search);
-  const code = urlParams.get('code');
-  if (code) {
-    console.log("Revieved Code: ", code)
-  }
-};
-
 onMounted(() => {
   getLoginUrl();
-  handleAuthorizationCode();
 });
 </script>
 
