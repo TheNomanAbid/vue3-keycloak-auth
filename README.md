@@ -30,7 +30,7 @@ This guide covers the steps required to set up and configure Keycloak for use wi
 - Set **Proof Key for Code Exchange Code Challenge Method** to `S256`.
 
 ### Configure Content Security Policy
-Add `frame-ancestors 'self' {BASE_URL};` to allow iframe embedding.
+Add `frame-src 'self' {BASE_URL}; frame-ancestors 'self' {BASE_URL}; object-src 'none';` to allow iframe embedding.
 
 ## Vue.js Frontend Configuration
 
