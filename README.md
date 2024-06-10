@@ -23,8 +23,8 @@ This guide covers the steps required to set up and configure Keycloak for use wi
 
 ### Configure Client
 #### Under the **Settings** tab:
-- Set **Valid Redirect URIs** to `http://localhost:8080/*`.
-- Set **Web Origins** to `*` or `http://localhost:8080`.
+- Set **Valid Redirect URIs** to `{URL_ORIGIN}/*`.
+- Set **Web Origins** to `*` or `{URL_ORIGIN}`.
 - Enable **Authorization Enabled**.
 
 #### Under the **Advanced Settings** tab:
@@ -34,7 +34,7 @@ This guide covers the steps required to set up and configure Keycloak for use wi
 - Copy the **Client Secret**.
 
 ### Configure Content Security Policy
-Add `frame-ancestors 'self' http://localhost:8080;` to allow iframe embedding.
+Add `frame-ancestors 'self' {URL_ORIGIN};` to allow iframe embedding.
 
 ## Vue.js Frontend Configuration
 
