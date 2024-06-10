@@ -37,3 +37,5 @@ Add `frame-ancestors 'self' {BASE_URL};` to allow iframe embedding.
 ### Install Dependencies in Root Directory i.e frontend/
 ```sh
 npm install
+
+### Create a .env File
