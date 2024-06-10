@@ -38,6 +38,6 @@ Add `frame-ancestors 'self' {BASE_URL};` to allow iframe embedding.
 
 ## Vue.js Frontend Configuration
 
-### Install Dependencies
+### Install Dependencies in Root Directory i.e frontend/
 ```sh
-npm install crypto-js axios
+npm install
