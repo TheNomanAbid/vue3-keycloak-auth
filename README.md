@@ -37,5 +37,24 @@ Add `frame-ancestors 'self' {BASE_URL};` to allow iframe embedding.
 ### Install Dependencies in Root Directory i.e frontend/
 ```sh
 npm install
+```
 
-### Create a .env File
+### Create a `.env` File
+
+1. **Create a `.env` file**:
+   - In the root directory of your Vue.js project, create a file named `.env`.
+
+2. **Add Environment Variables**:
+   - Open the `.env` file and add the following variables:
+     ```plaintext
+     VUE_APP_KEYCLOAK_URL={KC_BASE_URL}/auth
+     VUE_APP_KEYCLOAK_REALM={REALM}
+     VUE_APP_KEYCLOAK_CLIENT_ID={CLIENT_ID}
+     VUE_APP_KEYCLOAK_CLIENT_SECRET={CLIENT_SECRET}
+     ```
+
+3. **Usage in Vue Project**:
+   - Access these environment variables in your Vue.js project using `process.env`:
+     ```javascript
+     const keycloakUrl = process.env.VUE_APP_KEYCLOAK_URL;
+     ```
