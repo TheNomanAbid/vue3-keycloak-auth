@@ -24,14 +24,11 @@ This guide covers the steps required to set up and configure Keycloak for use wi
 ### Configure Client
 #### Under the **Settings** tab:
 - Set **Valid Redirect URIs** to `{BASE_URL}/*`.
-- Set **Web Origins** to `*` or `{BASE_URL}`.
-- Enable **Authorization Enabled**.
+- Set **Web Origins** to `+` or `{BASE_URL}`.
+- Enable **Direct Access Grants** in Authentication Flow.
 
 #### Under the **Advanced Settings** tab:
 - Set **Proof Key for Code Exchange Code Challenge Method** to `S256`.
-
-#### Under the **Credentials** tab:
-- Copy the **Client Secret**.
 
 ### Configure Content Security Policy
 Add `frame-ancestors 'self' {BASE_URL};` to allow iframe embedding.
