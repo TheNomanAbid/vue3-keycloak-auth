@@ -1,11 +1,12 @@
 <template>
-  <div v-if="keycloakUrl" class="login-container">
+  <div v-if="keycloakUrl && !checkAuthenticated()" class="login-container">
     <iframe
       :src="keycloakUrl"
       frameborder="0"
       class="login-iframe"
     ></iframe>
   </div>
+  <div v-else><h2>Signed In.</h2></div>
 </template>
 
 <script setup lang="ts">
@@ -43,8 +44,13 @@ const getLoginUrl = () => {
   sessionStorage.setItem('pkce_code_verifier', codeVerifier);
 };
 
+const checkAuthenticated = () => {
+  return localStorage.getItem('access_token')
+}
+
 onMounted(() => {
   getLoginUrl();
+  checkAuthenticated();
 });
 </script>
 

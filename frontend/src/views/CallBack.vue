@@ -37,8 +37,7 @@ const handleAuthorizationCode = async () => {
       localStorage.setItem('access_token', access_token);
       localStorage.setItem('refresh_token', refresh_token);
       localStorage.setItem('id_token', id_token);
-
-      router.push('/home');
+      window.parent.location.href = window.parent.location.origin;
     } catch (error) {
       console.error('Failed to exchange code for token', error);
     }

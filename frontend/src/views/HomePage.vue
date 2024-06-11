@@ -5,12 +5,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
-import { useRouter } from 'vue-router';
-
-const router = useRouter();
-
-const logout = () => {
+<script setup lang="ts">const logout = () => {
   const keycloakUrl = 'http://localhost:8081';
   const realm = 'Vue';
   const redirectUri = encodeURIComponent(window.location.origin + '/login');
