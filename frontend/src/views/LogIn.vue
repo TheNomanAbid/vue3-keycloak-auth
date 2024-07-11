@@ -1,5 +1,13 @@
 <template>
   <div v-if="keycloakUrl && !checkAuthenticated()" class="login-container">
+    <vue-web-otp ref="webOtp" @input="otpInput = $event">
+      <template #default="{ autocomplete }">
+        <input
+          v-model="otpInput"
+          :autocomplete="autocomplete"
+        />
+      </template>
+    </vue-web-otp>
     <iframe
       :src="keycloakUrl"
       frameborder="0"
@@ -13,7 +21,10 @@
 import { onMounted, ref } from 'vue';
 import sha256 from 'crypto-js/sha256';
 import Base64 from 'crypto-js/enc-base64';
+import { VueWebOtp } from 'vue-web-otp';
 
+const webOtp = ref<InstanceType<typeof VueWebOtp> | null>(null);
+const otpInput = ref('');
 const keycloakUrl = ref('');
 
 const generateRandomString = (): string => {
